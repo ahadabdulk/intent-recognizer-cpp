@@ -64,3 +64,19 @@ TEST_F(TestIntent, testIntentCalender)
     std::string output = testing::internal::GetCapturedStdout();
     EXPECT_STREQ( expected.c_str(), output.c_str() );  
 }
+
+TEST_F(TestIntent, testIntentWeatherCityObjectCreation)
+{
+    s_intent = u_factory->CreateIntent(weatherCityIntent);
+    EXPECT_TRUE( nullptr != s_intent );
+}
+
+TEST_F(TestIntent, testIntentWeatherCity)
+{
+    std::string expected = "Get Weather City\n";
+    s_intent = u_factory->CreateIntent(weatherCityIntent);
+    testing::internal::CaptureStdout();
+    s_intent->ProcessIntent();
+    std::string output = testing::internal::GetCapturedStdout();
+    EXPECT_STREQ( expected.c_str(), output.c_str() );  
+}
